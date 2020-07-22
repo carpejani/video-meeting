@@ -14,16 +14,17 @@ app.use(bodyParser.json())
 
 if(process.env.NODE_ENV==='production'){
 	app.use(express.static(__dirname+"/build"))
-	app.get("/", (req, res, next) => {
+	app.get("*", (req, res, next) => {
 		res.sendFile(path.join(__dirname+"/build/index.html"))
 	})
 }
 
-app.get('/test',(req,res)=>{
-	res.send('hello')
-})
+// app.get('/test',(req,res)=>{
+// 	res.send('hello')
+// 	console.log(process.env.NODE_ENV)
+// })
 
-app.set('port', (process.env.PORT || 4001))
+app.set('port', (process.env.PORT || 4000))
 
 
 connections = {}
